@@ -1,56 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    />
-  </head>
+{% extends "layout.html" %} {% block content %}
 
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="#">Top navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarCollapse"
-        aria-controls="navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <main role="main" class="container">
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p class="lead">
-          This example is a quick exercise to illustrate how the top-aligned navbar works. As you
-          scroll, this navbar remains in its original position and moves with the rest of the page.
-        </p>
-        <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button"
-          >View navbar docs &raquo;</a
-        >
-      </div>
-    </main>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  </body>
-</html>
+<div class="jumbotron">
+  <h1>Book Receipt</h1>
+  <form action="/" method="POST">
+    <div class="form-group">
+      <label for="total-books-rented">Number of books rented:</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Enter Number of books rented"
+        id="total-books-rented"
+        name="total-books-rented"
+        required
+      />
+    </div>
+    <p>Book rent duration:</p>
+    <div class="form-group">
+      <label for="rented-on">Rented on:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        id="rented-on"
+        name="rented-on"
+        required
+        pattern="\d{4}-\d{2}-\d{2}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="returned-on">Returned Rented book on:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        id="returned-on"
+        name="returned-on"
+        required
+        pattern="\d{4}-\d{2}-\d{2}"
+      />
+    </div>
+    <p><b>Note:</b> All Dates are inclusive.</p>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %} {% block footer %} {{ super() }}
+<script>
+  $("#rented-on").datepicker({
+    format: "yyyy-mm-dd",
+  });
+  $("#returned-on").datepicker({
+    format: "yyyy-mm-dd",
+  });
+</script>
+{% endblock %}

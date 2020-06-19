@@ -1,0 +1,10 @@
+{% extends "layout.html" %} {% block content %}
+<div class="jumbotron">
+  <h1>Book Receipt</h1>
+  <p>Total books Rented: {{ context.total_books_rented }}</p>
+  <p>Total rented Days: {{ context.total_rented_days }}</p>
+  <p>Per day rental charge: Rs. 1</p>
+  <p>Total rent charges: Rs. {{ context.total_rent_in_rs }}</p>
+  <a href="/">Calculate another book receipt</a>
+</div>
+{% endblock %}

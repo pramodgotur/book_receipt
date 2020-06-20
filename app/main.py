@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from rent_calculation_helper import get_total_rented_days, get_total_rent_in_rs
+from rent_calculation_helper import get_total_rent
 
 
 app = Flask(__name__)
@@ -9,24 +9,15 @@ app = Flask(__name__)
 def home():
     context = {"message": "", "messge_type": ""}
     if request.method == 'POST':
-        total_books_rented = int(request.form['total-books-rented'])
-        rented_on = request.form['rented-on']
-        returned_on = request.form['returned-on']
-
-        app.logger.info(request.form)
-
-        total_rented_days, is_valid_dates = get_total_rented_days(
-            rented_on, returned_on)
+        book_wise_total_rent, total_rent, is_valid_dates, error_msg = get_total_rent(
+            request.form)
         if not is_valid_dates:
-            context["message"] = "Invalid Book rent duration"
+            context["message"] = error_msg
             context["messge_type"] = "danger"
             return render_template("home.html", context=context)
-        total_rent_in_rs = get_total_rent_in_rs(
-            total_books_rented, total_rented_days)
-
-        context['total_rented_days'] = total_rented_days
-        context['total_books_rented'] = total_books_rented
-        context['total_rent_in_rs'] = total_rent_in_rs
+        app.logger.warning(total_rent)
+        context['book_wise_total_rent'] = book_wise_total_rent
+        context['total_rent'] = total_rent
         return render_template("rent_receipt.html", context=context)
     return render_template("home.html", context=context)
 

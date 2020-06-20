@@ -1,10 +1,35 @@
 {% extends "layout.html" %} {% block content %}
 <div class="jumbotron">
   <h1>Book Receipt</h1>
-  <p>Total books Rented: {{ context.total_books_rented }}</p>
-  <p>Total rented Days: {{ context.total_rented_days }}</p>
-  <p>Per day rental charge: Rs. 1</p>
-  <p>Total rent charges: Rs. {{ context.total_rent_in_rs }}</p>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3 text-center">Total books rented</div>
+    <div class="col-md-3 text-center">
+      Book rent duration (in Days)
+    </div>
+    <div class="col-md-3 text-center">
+      Book rent (in Rs)
+    </div>
+  </div>
+
+  {% for book_type,book_rent in context.book_wise_total_rent.items() %}
+  <div class="row">
+    <div class="col-md-3">{{ book_type }}</div>
+    <div class="col-md-3 text-center">{{book_rent.total_books}}</div>
+    <div class="col-md-3 text-center">
+      {{book_rent.rented_days}}
+    </div>
+    <div class="col-md-3 text-center">{{book_rent.rent_in_rs}}</div>
+  </div>
+  {% endfor %}
+  <hr />
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-3 text-center">Total rent:</div>
+    <div class="col-md-3 text-center">{{ context.total_rent }}</div>
+  </div>
+  <hr />
+  <br />
   <a href="/">Calculate another book receipt</a>
 </div>
 {% endblock %}

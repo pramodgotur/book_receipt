@@ -3,53 +3,235 @@
 <div class="jumbotron">
   <h1>Book Receipt</h1>
   <form action="/" method="POST">
-    <div class="form-group">
-      <label for="total-books-rented">Number of books rented:</label>
-      <input
-        type="number"
-        class="form-control"
-        placeholder="Enter Number of books rented"
-        id="total-books-rented"
-        name="total-books-rented"
-        required
-      />
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">Total books rented</div>
+      <div class="col-md-6 text-center">
+        Book rent duration
+        <div class="row">
+          <div class="col-md-6">Rented on:</div>
+          <div class="col-md-6">Returned Rented book on:</div>
+        </div>
+      </div>
     </div>
-    <p>Book rent duration:</p>
-    <div class="form-group">
-      <label for="rented-on">Rented on:</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="yyyy-mm-dd"
-        id="rented-on"
-        name="rented-on"
-        required
-        pattern="\d{4}-\d{2}-\d{2}"
-      />
+    <!-- for regular -->
+    <div class="row">
+      <div class="col-md-2">Regular books</div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <!-- <label for="total-regular-rented">Number of regular books rented:</label> -->
+          <input
+            type="number"
+            class="form-control"
+            id="total-regular-rented"
+            name="total-regular-rented"
+            required
+            value="0"
+            min="0"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              id="rented-on-regular"
+              name="rented-on-regular"
+              pattern="\d{4}-\d{2}-\d{2}"
+            />
+          </div>
+          <div class="col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              id="returned-on-regular"
+              name="returned-on-regular"
+              pattern="\d{4}-\d{2}-\d{2}"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="returned-on">Returned Rented book on:</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="yyyy-mm-dd"
-        id="returned-on"
-        name="returned-on"
-        required
-        pattern="\d{4}-\d{2}-\d{2}"
-      />
+    <!-- end regular -->
+    <!-- for fiction -->
+    <div class="row">
+      <div class="col-md-2">Fiction books</div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <input
+            type="number"
+            class="form-control"
+            id="total-fiction-rented"
+            name="total-fiction-rented"
+            required
+            value="0"
+            min="0"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              id="rented-on-fiction"
+              name="rented-on-fiction"
+              pattern="\d{4}-\d{2}-\d{2}"
+            />
+          </div>
+          <div class="col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              id="returned-on-fiction"
+              name="returned-on-fiction"
+              pattern="\d{4}-\d{2}-\d{2}"
+            />
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- end fiction -->
+    <!-- for novels -->
+    <div class="row">
+      <div class="col-md-2">Novels</div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <input
+            type="number"
+            class="form-control"
+            id="total-novel-rented"
+            name="total-novel-rented"
+            required
+            value="0"
+            min="0"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              id="rented-on-novel"
+              name="rented-on-novel"
+              pattern="\d{4}-\d{2}-\d{2}"
+            />
+          </div>
+          <div class="col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              id="returned-on-novel"
+              name="returned-on-novel"
+              pattern="\d{4}-\d{2}-\d{2}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  end novels-->
     <p><b>Note:</b> All Dates are inclusive.</p>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
 {% endblock %} {% block footer %} {{ super() }}
 <script>
-  $("#rented-on").datepicker({
+  $("#rented-on-regular").datepicker({
     format: "yyyy-mm-dd",
   });
-  $("#returned-on").datepicker({
+  $("#returned-on-regular").datepicker({
     format: "yyyy-mm-dd",
   });
+  $("#rented-on-fiction").datepicker({
+    format: "yyyy-mm-dd",
+  });
+  $("#returned-on-fiction").datepicker({
+    format: "yyyy-mm-dd",
+  });
+  $("#rented-on-novel").datepicker({
+    format: "yyyy-mm-dd",
+  });
+  $("#returned-on-novel").datepicker({
+    format: "yyyy-mm-dd",
+  });
+  required;
 </script>
 {% endblock %}
+
+<!-- 
+
+<div class="form-group">
+  <label for="total-regular-rented">Number of regular books rented:</label>
+  <input
+    type="number"
+    class="form-control"
+    placeholder="Enter Number of regular books rented"
+    id="total-regular-rented"
+    name="total-regular-rented"
+    required
+    value="0"
+    min="0"
+  />
+</div>
+<div class="form-group">
+  <label for="total-fiction-rented">Number of fiction books rented:</label>
+  <input
+    type="number"
+    class="form-control"
+    placeholder="Enter Number of fiction books rented"
+    id="total-fiction-rented"
+    name="total-fiction-rented"
+    required
+    value="0"
+    min="0"
+  />
+</div>
+<div class="form-group">
+  <label for="total-novels-rented">Number of novels rented:</label>
+  <input
+    type="number"
+    class="form-control"
+    placeholder="Enter Number of novels rented"
+    id="total-novels-rented"
+    name="total-novels-rented"
+    required
+    value="0"
+    min="0"
+  />
+</div>
+<p><b>Book rent duration:</b></p>
+<div class="form-group">
+  <label for="rented-on">Rented on:</label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="yyyy-mm-dd"
+    id="rented-on"
+    name="rented-on"
+    required
+    pattern="\d{4}-\d{2}-\d{2}"
+  />
+</div>
+<div class="form-group">
+  <label for="returned-on">Returned Rented book on:</label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="yyyy-mm-dd"
+    id="returned-on"
+    name="returned-on"
+    required
+    pattern="\d{4}-\d{2}-\d{2}"
+  />
+</div> -->

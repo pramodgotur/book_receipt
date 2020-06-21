@@ -18,8 +18,18 @@ def get_total_rented_days(rented_on, returned_on):
 
 
 def get_total_rent_in_rs(total_books_rented, total_rented_days, book_type):
-    return total_books_rented * \
-        total_rented_days * BOOK_RENTS[book_type]
+    if book_type == "regular":
+        if total_rented_days < 2:
+            return total_books_rented * total_rented_days * 2
+        else:
+            remaining_days = total_rented_days-2
+            first_two_days = total_rented_days - remaining_days
+            return total_books_rented * (first_two_days * 1 + remaining_days * BOOK_RENTS[book_type])
+    elif book_type == "novel" and total_rented_days < 3:
+        return total_books_rented * total_rented_days * 4.5
+    else:
+        return total_books_rented * \
+            total_rented_days * BOOK_RENTS[book_type]
 
 
 def get_total_rent(request_form_data):
